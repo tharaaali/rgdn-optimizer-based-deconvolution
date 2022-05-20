@@ -3,6 +3,7 @@ dataFiles/
 sweet/
 .ipynb_checkpoints/
 
+
 # Ignore Logs
 logs
 *.log
