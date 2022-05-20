@@ -1,5 +1,6 @@
 # Ignore the dataFiles directory
 dataFiles/
+.ipynb_checkpoints/
 
 # Ignore Logs
 logs
