@@ -1,0 +1,23 @@
+# Ignore the dataFiles directory
+dataFiles/
+sweet/
+.ipynb_checkpoints/
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> fdb4b0cb225b163d1b2ef4ff03df5ef8f78ce161
+# Ignore Logs
+logs
+*.log
+
+# Ignore the build directory
+/dist
+
+# The file containing environment variables 
+.env
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.sw*
