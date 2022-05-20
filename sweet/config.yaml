@@ -1,0 +1,63 @@
+Mode: Release
+additional_checks_for_user: False
+debug_timestamp_mode: False
+enable_cross: False
+
+N: 256  # (points): canvas size
+view_dist: 500  # (cm)
+opt_size_h: 14.4  # (cm), may be ignored and calculated automatically
+auto_opt_size: true
+auto_opt_size_multiplicator: 1.  # =canvas_size/calculated_canvas_size
+k_ratio: 4  # =canvas_size/opt_size
+GPU_enabled: true  # use tf fft implementation
+
+clipping:
+  method: "simple"
+  args:
+    - 0
+    - 1
+  # method: "hist_clipping_deprecated"
+  # args:
+  #   - 0.01
+  #   - 0.99
+
+PSF_params:
+  regularization_const_K: 0.01
+  calc_scale: 4  # PSF_N = N*calc_scale
+  hist_clips: 0.01
+  rotate180: false
+
+Demo:
+  Participant: "MFDC"
+  Eye: "L"
+
+  NeuralNetwork: True
+  NeuralNetworkPath: 'nn_mix_stage2'
+
+
+  UseManualEyeParams: false  # if false: use auto-parameters, if true: use the following:
+  ManualEyeParams:
+    D0: 6.0
+    A: 175  # (degrees)
+    C: -0.0
+    S: -3.0
+    # VD == 12mm
+
+  NormalizeContrast: true
+
+  DebugModes:
+    # ShowPSF: true  # return psf, not precompensated
+    ShowModelledImg: false  # return psf, not precompensated
+    ShowModelledPre: false
+    ShowBaseline: null
+    GrayBG: false
+
+
+EyeTracker:
+  PupilMultiplicator: 1.
+  CalibMultiplicatorMode: false
+
+# mock eye tracker generates random pupil size (for debugging, camera experiments)
+MockEyeTracker:
+  min_val: 2
+  max_val: 4
