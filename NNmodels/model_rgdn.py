@@ -157,6 +157,7 @@ class OptimizerRGDN(Module):
 
         return output_list
 
+#Added so to caluculate Ax as our kernel
 def fitting_error_cal(y, x, k):
     # only used during testing
     n_size = x.size()[0]
@@ -166,9 +167,44 @@ def fitting_error_cal(y, x, k):
     y1 = y.transpose(1, 0)
     # k: N x 1 x Ksize x Ksize
     vk = Variable(k.data.clone())
-    kx_y = F.conv2d(x1, vk, padding=padding, groups=n_size) # Ax
-    kx_y.sub_(y1) # Ax-y
-    kx_y = utils.truncate_image(kx_y, k_size)
+    Ax = fft_conv(x, k, use_numpy=False)# Ax
+    kx_y = Ax - y # Ax-y
+    kx_y = truncate_image(kx_y, k_size)
 
     fitting_error = torch.norm(kx_y, 'fro') / 2
     return fitting_error
+
+#         Ax = fft_conv(x, k, use_numpy=False) # k * x
+#         Ax_y = Ax - y # k * x - y
+
+#from utils from original paper
+def truncate_image(img, s):
+    # s: truncate size
+    if(s>0):
+        if(len(img.shape)==3):
+            # F or C x H x W
+            return img[:, s:(-s), s:(-s)]
+        elif(len(img.shape)==4):
+            # F x C x H x W
+            return img[:, :, s:(-s), s:(-s)]
+    else:
+        return img    
+    
+    
+    
+##function from the original artile    
+# def fitting_error_cal(y, x, k):
+#     # only used during testing
+#     n_size = x.size()[0]
+#     k_size = k.size()[2]
+#     padding = int(k_size / 2)
+#     x1 = x.transpose(1, 0)  # x1: C x N x H x W
+#     y1 = y.transpose(1, 0)
+#     # k: N x 1 x Ksize x Ksize
+#     vk = Variable(k.data.clone())
+#     kx_y = F.conv2d(x1, vk, padding=padding, groups=n_size) # Ax
+#     kx_y.sub_(y1) # Ax-y
+#     kx_y = utils.truncate_image(kx_y, k_size)
+
+#     fitting_error = torch.norm(kx_y, 'fro') / 2
+#     return fitting_error
