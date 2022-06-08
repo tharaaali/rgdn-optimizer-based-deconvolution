@@ -1,0 +1,11 @@
+pydoe
+torchsummary
+torchmetrics
+piq 
+torch==1.10 
+pyyaml 
+tqdm 
+scikit-learn 
+scikit-image 
+numba 
+numpy 
