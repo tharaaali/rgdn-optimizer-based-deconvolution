@@ -27,28 +27,38 @@ The evaluation will be done using MSE and SSIM between (k * Xhat) and y
 So, to evaluate our trained model: convoluted the recovered photo (output of our model) with the bluer-kernel and compare it with the input photo to the model (ground-truth * bluer-kernel) comparing methods to use :MSE, SSIM
 
 ## Requirements to Run
+	
+        There are 2 files (ipynb) 
+
+        1. To train model:
+                    file name: `End-to-end-non-blind-deconvolution.ipynb`:
+	            in this file the code for training a model from the beginning !!
+
+        2. To evaluate a model:
+                             file name: `evaluation2.ipynb`: 
+	                      This file: to load an already trained model and evaluate it!
+
+        
+        Requirements to Run any of the files:
 
 	1. first download the dataset (http://chaladze.com/l5/)
-		need to make sure that the dataset is in the directory:
+	      * need to make sure that the dataset is in the directory:
 		#path for dataset folder:
-		DATASET ="PATH" 
-	
-		specify the directory path, where the trained model will be saved:
+		DATA_DIR ="PATH" 
+                in this directory, there should be 2 folders /train, /test 
+	      * specify the directory path, where the trained model will be saved:
 		#path where to save trained models folder:
-		SAVE_MODEL_DIR='PATH"
-	
-		in case the trained model is ready to test, the directory path to the model should be spicified 
+		SAVE_MODEL_DIR="PATH"  /Initially it's right
+	      * in case the trained model is ready to test, the directory path to the model should be specified 
 		#path for already trained models folder:
-		MODEL_DIR='PATH'
-	
-		initially all these directories are set right 
+		MODEL_DIR="PATH" /Initially it's right
+          
+            
 	
 	2. get environment ready:
-         
-         first time when start server/set environmnt: it's needed to run the comands to install the requirment:
-             uncomment the line: # !pip install -r requirements.txt
-          
-          or you can install the libraries	 
+         first time when start server/set environment: it's needed to run the commands to install the requirement:
+             uncomment the line: # !pip install -r requirements.txt 
+          OR you can install the libraries	 
 			# install necessary tools
 			!pip install pydoe -q
 			!pip install torchsummary -q
@@ -61,14 +71,6 @@ So, to evaluate our trained model: convoluted the recovered photo (output of our
 		sklearn
 		scikit-image
 		numba
-
-## To run the code:
-
-    1. End-to-end-non-blind-deconvolution:
-	in this file the code for training a model from the beginning !!
-
-    2. evaluation2: 
-	This file: to load an already trained model and evaluate it!
 
 
 ## info about data
