@@ -23,8 +23,8 @@ there are 6000 files in train data, 2000 files for test data
 
 ## Model evaluation
 
-The evaluation will be done using MSE and SSIM between (k * Xhat) and y
-So, to evaluate our trained model: convoluted the recovered photo (output of our model) with the bluer-kernel and compare it with the input photo to the model (ground-truth * bluer-kernel) comparing methods to use :MSE, SSIM
+The evaluation will be done using RMSE and SSIM between (k * Xhat) and y
+So, to evaluate our trained model: convoluted the recovered photo (output of our model) with the bluer-kernel and compare it with the input photo to the model (ground-truth * bluer-kernel) comparing methods to use :RMSE, SSIM
 
 ## Requirements to Run
 	
