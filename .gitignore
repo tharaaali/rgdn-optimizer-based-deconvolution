@@ -1,7 +1,13 @@
 # Ignore the dataFiles directory
 dataFiles/
+
 sweet/
+
 .ipynb_checkpoints/
+
+__pycache__/
+
+*.py[cod]
 
 <<<<<<< HEAD
 
