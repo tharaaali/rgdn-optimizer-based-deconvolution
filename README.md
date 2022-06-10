@@ -10,7 +10,7 @@ y = k * x + n
 * y ∈ R^m : blurred image
 * k ∈ R^l : corresponding blur kernel k
 * x ∈ R^n : latent image
-* * denotes the convolution operator
+* '*' denotes the convolution operator
 * n ∈ R^m : denotes an i.i.d. white Gaussian noise term with unknown standard deviation (i.e. noise level).
 giving y and k, we need to estimate x
 We'll call the result we get as Xhat
@@ -18,13 +18,13 @@ We'll call the result we get as Xhat
 ## Data
 
 The dataset we're using till now: DATASET FROM HRTR: http://chaladze.com/l5/ //could be updated later
-all files size: 256*256
+all files size: 256 * 256
 there are 6000 files in train data, 2000 files for test data
 
 ## Model evaluation
 
-The evaluation will be done using MSE and SSIM between (k*Xhat) and y
-So, to evaluate our trained model: convoluted the recovered photo (output of our model) with the bluer-kernel and compare it with the input photo to the model (ground-truth*bluer-kernel) comparing methods to use :MSE, SSIM
+The evaluation will be done using MSE and SSIM between (k * Xhat) and y
+So, to evaluate our trained model: convoluted the recovered photo (output of our model) with the bluer-kernel and compare it with the input photo to the model (ground-truth * bluer-kernel) comparing methods to use :MSE, SSIM
 
 ## Requirements to Run
 
