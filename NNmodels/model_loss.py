@@ -42,12 +42,43 @@ class LogLoss(torch.nn.Module):
         return logloss.mean()
 
 
-###### ADDED #######  
+# ###### ADDED #######  
+# class DeconvLoss(torch.nn.Module):
+#     def __init__(self, tau=1):
+#         super(DeconvLoss, self).__init__()
+#         self.tau = tau # importance weight for the L_grad term
+#         self.L_mse = LogLoss()
+#         self.L_grad = GradLoss()
+
+#     def forward(self, x_gt, output):
+#         '''
+#         Parameters:
+#         - x_gt: ground truth image (BS x CH x H x W)
+#         - output: output of the model (list with <num_steps> elements, where each element has the shape of (BS x CH x H x W))
+#         '''
+#         S = len(output) # number of the model's steps
+#         loss = 0
+#         for i in range(1, S+1):
+#             loss += i*(self.L_mse(x_gt, output[i-1]) + self.tau * self.L_grad(x_gt, output[i-1]))
+
+#         return loss / S    
+    
+#####################    
+class MSELoss(torch.nn.Module):
+    def __init__(self):
+        super(MSELoss, self).__init__()
+
+    def forward(self, x, y):
+        error = torch.pow(x - y, 2)
+        return error.mean()
+ 
+  
+ ###### ADDED #######  
 class DeconvLoss(torch.nn.Module):
     def __init__(self, tau=1):
         super(DeconvLoss, self).__init__()
         self.tau = tau # importance weight for the L_grad term
-        self.L_mse = LogLoss()
+        self.L_mse = MSELoss()
         self.L_grad = GradLoss()
 
     def forward(self, x_gt, output):
@@ -62,8 +93,11 @@ class DeconvLoss(torch.nn.Module):
             loss += i*(self.L_mse(x_gt, output[i-1]) + self.tau * self.L_grad(x_gt, output[i-1]))
 
         return loss / S    
-#####################    
-        
+#####################       
+    
+    
+    
+    
     
 class ImgDiffComputer(torch.nn.Module):
     def __init__(self):
